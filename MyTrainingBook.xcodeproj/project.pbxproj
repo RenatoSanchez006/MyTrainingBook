@@ -7,25 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32009B9D2537FDD3006CD075 /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32009B9C2537FDD3006CD075 /* ExercisesViewController.swift */; };
+		32009B9F2537FE23006CD075 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32009B9E2537FE23006CD075 /* Exercise.swift */; };
+		32009BA1253801AB006CD075 /* NewExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32009BA0253801AB006CD075 /* NewExerciseViewController.swift */; };
 		321C5D7625369F6100812174 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C5D7525369F6100812174 /* AppDelegate.swift */; };
 		321C5D7825369F6100812174 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C5D7725369F6100812174 /* SceneDelegate.swift */; };
-		321C5D7A25369F6100812174 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C5D7925369F6100812174 /* ViewController.swift */; };
 		321C5D7D25369F6100812174 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321C5D7B25369F6100812174 /* Main.storyboard */; };
 		321C5D7F25369F6400812174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 321C5D7E25369F6400812174 /* Assets.xcassets */; };
 		321C5D8225369F6400812174 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321C5D8025369F6400812174 /* LaunchScreen.storyboard */; };
-		321C5D8C2536BE0500812174 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C5D8B2536BE0500812174 /* SimpleButton.swift */; };
+		329591A125381B1500E15265 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329591A025381B1500E15265 /* SimpleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32009B9C2537FDD3006CD075 /* ExercisesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExercisesViewController.swift; path = ViewControllers/ExercisesViewController.swift; sourceTree = "<group>"; };
+		32009B9E2537FE23006CD075 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = ObjClass/Exercise.swift; sourceTree = "<group>"; };
+		32009BA0253801AB006CD075 /* NewExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewExerciseViewController.swift; path = ViewControllers/NewExerciseViewController.swift; sourceTree = "<group>"; };
 		321C5D7225369F6100812174 /* MyTrainingBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTrainingBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		321C5D7525369F6100812174 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		321C5D7725369F6100812174 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		321C5D7925369F6100812174 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		321C5D7C25369F6100812174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		321C5D7E25369F6400812174 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		321C5D8125369F6400812174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		321C5D8325369F6400812174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		321C5D8B2536BE0500812174 /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimpleButton.swift; path = MyTrainingBook/components/SimpleButton.swift; sourceTree = "<group>"; };
+		329591A025381B1500E15265 /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimpleButton.swift; path = Components/SimpleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +46,6 @@
 		321C5D6925369F6100812174 = {
 			isa = PBXGroup;
 			children = (
-				321C5D8B2536BE0500812174 /* SimpleButton.swift */,
 				321C5D7425369F6100812174 /* MyTrainingBook */,
 				321C5D7325369F6100812174 /* Products */,
 			);
@@ -61,9 +64,12 @@
 			children = (
 				321C5D7525369F6100812174 /* AppDelegate.swift */,
 				321C5D7725369F6100812174 /* SceneDelegate.swift */,
-				321C5D7925369F6100812174 /* ViewController.swift */,
 				321C5D7B25369F6100812174 /* Main.storyboard */,
+				32009B9C2537FDD3006CD075 /* ExercisesViewController.swift */,
+				32009BA0253801AB006CD075 /* NewExerciseViewController.swift */,
+				32009B9E2537FE23006CD075 /* Exercise.swift */,
 				321C5D7E25369F6400812174 /* Assets.xcassets */,
+				329591A025381B1500E15265 /* SimpleButton.swift */,
 				321C5D8025369F6400812174 /* LaunchScreen.storyboard */,
 				321C5D8325369F6400812174 /* Info.plist */,
 			);
@@ -141,10 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				321C5D7A25369F6100812174 /* ViewController.swift in Sources */,
+				32009B9F2537FE23006CD075 /* Exercise.swift in Sources */,
 				321C5D7625369F6100812174 /* AppDelegate.swift in Sources */,
 				321C5D7825369F6100812174 /* SceneDelegate.swift in Sources */,
-				321C5D8C2536BE0500812174 /* SimpleButton.swift in Sources */,
+				32009B9D2537FDD3006CD075 /* ExercisesViewController.swift in Sources */,
+				32009BA1253801AB006CD075 /* NewExerciseViewController.swift in Sources */,
+				329591A125381B1500E15265 /* SimpleButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
