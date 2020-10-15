@@ -20,6 +20,12 @@ class Exercise: NSObject {
         self.instructions = instructions
         self.defRepetitions = defRepetitions
     }
+    
+    override var description : String {
+        get {
+            return "Exercise : name: \(name!) - type: \(type!) - instructions: \(instructions!) - reps: \(defRepetitions!)"
+        }
+    }
 }
 
 // MARK: - TODO'S
