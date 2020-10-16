@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Exercise: NSObject {
+class Exercise: Codable {
     var name: String!
     var type: String!
     var instructions: String!
@@ -19,12 +19,6 @@ class Exercise: NSObject {
         self.type = type
         self.instructions = instructions
         self.defRepetitions = defRepetitions
-    }
-    
-    override var description : String {
-        get {
-            return "Exercise : name: \(name!) - type: \(type!) - instructions: \(instructions!) - reps: \(defRepetitions!)"
-        }
     }
 }
 

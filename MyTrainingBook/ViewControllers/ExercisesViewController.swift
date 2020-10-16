@@ -12,33 +12,42 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var tableView: UITableView!
     
-    //    Prototype List
-    var listExercises = [
-        Exercise(name: "exercise 1", type: "type 1", instructions: "", defRepetitions: 10),
-        Exercise(name: "exercise 2", type: "type 2", instructions: "", defRepetitions: 10),
-        Exercise(name: "exercise 3", type: "type 3", instructions: "", defRepetitions: 10),
-        Exercise(name: "exercise 4", type: "type 4", instructions: "", defRepetitions: 10),
-    ]
+    var exerciseList: [Exercise] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let app = UIApplication.shared
+        NotificationCenter.default.addObserver(self, selector: #selector(saveExercises), name: UIApplication.didEnterBackgroundNotification, object: app)
+        
+        if FileManager.default.fileExists(atPath: getFileUrl().path) {
+            getExercises()
+        }
     }
     
     // MARK: - Methods For Table View Controller
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listExercises.count
+        return exerciseList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = listExercises[indexPath.row].name
-        cell.detailTextLabel?.text = listExercises[indexPath.row].type
+        cell.textLabel?.text = exerciseList[indexPath.row].name
+        cell.detailTextLabel?.text = exerciseList[indexPath.row].type
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            exerciseList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
     // MARK: - Protocol Management
     func createExercise(newExercise: Exercise) {
-        listExercises.append(newExercise)
+        exerciseList.append(newExercise)
         tableView.reloadData()
     }
     
@@ -49,7 +58,35 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
         vwNewExercise.delegate = self
     }
     
+    // MARK: - Persistence Management
+    func getFileUrl() -> URL {
+        let url = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = url.appendingPathComponent("Exercises.plist")
+        return filePath
+    }
+    
+    @objc func saveExercises() {
+        do {
+            let data = try PropertyListEncoder().encode(exerciseList)
+            try data.write(to: getFileUrl())
+        }
+        catch {
+            print("Couldn't write in the file")
+        }
+    }
+    
+    func getExercises() {
+        exerciseList.removeAll()
+        
+        do {
+            let data = try Data.init(contentsOf: getFileUrl())
+            exerciseList = try PropertyListDecoder().decode([Exercise].self, from: data)
+        }
+        catch {
+            print("Couldn't load file")
+        }
+        tableView.reloadData()
+    }
+    
     // MARK: - TODO'S
-    // 1 - Save exercise info in internal file.
-    // 2 - Delete Exercises
 }
