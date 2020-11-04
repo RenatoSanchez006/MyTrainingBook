@@ -15,6 +15,9 @@
 		321C5D7D25369F6100812174 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321C5D7B25369F6100812174 /* Main.storyboard */; };
 		321C5D7F25369F6400812174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 321C5D7E25369F6400812174 /* Assets.xcassets */; };
 		321C5D8225369F6400812174 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321C5D8025369F6400812174 /* LaunchScreen.storyboard */; };
+		328C21F025507EBD00C75C38 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C21EF25507EBD00C75C38 /* RoutinesViewController.swift */; };
+		328C21F2255083B300C75C38 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C21F1255083B300C75C38 /* Routine.swift */; };
+		328C21F42551250400C75C38 /* NewRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C21F32551250400C75C38 /* NewRoutineViewController.swift */; };
 		329591A125381B1500E15265 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329591A025381B1500E15265 /* SimpleButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +32,9 @@
 		321C5D7E25369F6400812174 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		321C5D8125369F6400812174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		321C5D8325369F6400812174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		328C21EF25507EBD00C75C38 /* RoutinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoutinesViewController.swift; path = ViewControllers/RoutinesViewController.swift; sourceTree = "<group>"; };
+		328C21F1255083B300C75C38 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routine.swift; path = ObjClass/Routine.swift; sourceTree = "<group>"; };
+		328C21F32551250400C75C38 /* NewRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewRoutineViewController.swift; path = ViewControllers/NewRoutineViewController.swift; sourceTree = "<group>"; };
 		329591A025381B1500E15265 /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimpleButton.swift; path = Components/SimpleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,8 +72,11 @@
 				321C5D7725369F6100812174 /* SceneDelegate.swift */,
 				321C5D7B25369F6100812174 /* Main.storyboard */,
 				32009B9C2537FDD3006CD075 /* ExercisesViewController.swift */,
+				328C21EF25507EBD00C75C38 /* RoutinesViewController.swift */,
 				32009BA0253801AB006CD075 /* NewExerciseViewController.swift */,
 				32009B9E2537FE23006CD075 /* Exercise.swift */,
+				328C21F1255083B300C75C38 /* Routine.swift */,
+				328C21F32551250400C75C38 /* NewRoutineViewController.swift */,
 				321C5D7E25369F6400812174 /* Assets.xcassets */,
 				329591A025381B1500E15265 /* SimpleButton.swift */,
 				321C5D8025369F6400812174 /* LaunchScreen.storyboard */,
@@ -151,7 +160,10 @@
 				321C5D7625369F6100812174 /* AppDelegate.swift in Sources */,
 				321C5D7825369F6100812174 /* SceneDelegate.swift in Sources */,
 				32009B9D2537FDD3006CD075 /* ExercisesViewController.swift in Sources */,
+				328C21F025507EBD00C75C38 /* RoutinesViewController.swift in Sources */,
+				328C21F42551250400C75C38 /* NewRoutineViewController.swift in Sources */,
 				32009BA1253801AB006CD075 /* NewExerciseViewController.swift in Sources */,
+				328C21F2255083B300C75C38 /* Routine.swift in Sources */,
 				329591A125381B1500E15265 /* SimpleButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
