@@ -13,8 +13,10 @@ class Exercise: Codable {
     var type: String!
     var instructions: String!
     var defRepetitions: Int!
+    var _id: UUID!
     
     init(name: String, type: String, instructions: String, defRepetitions: Int) {
+        self._id = UUID()
         self.name = name
         self.type = type
         self.instructions = instructions
@@ -23,7 +25,6 @@ class Exercise: Codable {
 }
 
 // MARK: - TODO'S
-// TODO: Create incremental ID for each Exercise
 
 // Dummy List
 //var listExercises = [
