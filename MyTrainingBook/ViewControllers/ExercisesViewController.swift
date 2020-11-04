@@ -17,9 +17,6 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let app = UIApplication.shared
-        NotificationCenter.default.addObserver(self, selector: #selector(saveExercises), name: UIApplication.didEnterBackgroundNotification, object: app)
-        
         if FileManager.default.fileExists(atPath: getFileUrl().path) {
             getExercises()
         }
@@ -42,6 +39,7 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
             // Delete the row from the data source
             exerciseList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            saveExercises()
         }
     }
     
@@ -49,10 +47,10 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
     func createExercise(newExercise: Exercise) {
         exerciseList.append(newExercise)
         tableView.reloadData()
+        saveExercises()
     }
     
     // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vwNewExercise = segue.destination as! NewExerciseViewController
         vwNewExercise.delegate = self
