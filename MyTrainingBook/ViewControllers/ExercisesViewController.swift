@@ -43,6 +43,10 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     // MARK: - Protocol Management
     func createExercise(newExercise: Exercise) {
         exerciseList.append(newExercise)
@@ -52,8 +56,14 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vwNewExercise = segue.destination as! NewExerciseViewController
-        vwNewExercise.delegate = self
+        if segue.identifier == "newExerciseSegue" {
+            let vwNewExercise = segue.destination as! NewExerciseViewController
+            vwNewExercise.delegate = self
+        } else {
+            let selectedExercise = exerciseList[tableView.indexPathForSelectedRow!.row]
+            let vwDetailExercise = segue.destination as! ExerciseDetailViewController
+            vwDetailExercise.exercise = selectedExercise
+        }
     }
     
     // MARK: - Persistence Management
