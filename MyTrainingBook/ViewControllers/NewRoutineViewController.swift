@@ -8,12 +8,6 @@
 
 import UIKit
 
-class newRoutineExercisesCell: UITableViewCell {
-    @IBOutlet weak var lbTitle: UILabel!
-    @IBOutlet weak var lbSubtitle: UILabel!
-    @IBOutlet weak var tfReps: UITextField!
-}
-
 protocol newRoutineProtocol {
     func createRoutine(newRoutine: Routine)
 }
@@ -34,6 +28,9 @@ class NewRoutineViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         btnSave.addTarget(self, action: #selector(btnSaveTapped), for: .touchUpInside)
+        
+        // Register Custom Table View Cell
+        tableView.register(UINib(nibName: "ExerciseCellTableViewCell", bundle: nil), forCellReuseIdentifier: "exerciseCell")
         
         if FileManager.default.fileExists(atPath: getFileUrl().path) {
             getExercises()
@@ -91,10 +88,10 @@ class NewRoutineViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newRoutine_exerciseCell") as! newRoutineExercisesCell
-        cell.lbTitle?.text = exerciseList[indexPath.row].name
-        cell.lbSubtitle?.text = exerciseList[indexPath.row].type
-        cell.tfReps?.text = String(exerciseList[indexPath.row].defRepetitions)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell") as! ExerciseCellTableViewCell
+        cell.lbName?.text = exerciseList[indexPath.row].name
+        cell.lbType?.text = exerciseList[indexPath.row].type
+        cell.lbReps?.text = String(exerciseList[indexPath.row].defRepetitions)
         return cell
     }
     

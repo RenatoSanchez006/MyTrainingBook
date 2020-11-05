@@ -14,6 +14,7 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Dummy List
     var listRoutines: [Routine] = []
+    var selectedRoutine: Routine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,10 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "newRoutineSegue" {
             let vwNewRoutine = segue.destination as! NewRoutineViewController
             vwNewRoutine.delegate = self
+        } else {
+            selectedRoutine = listRoutines[tableView.indexPathForSelectedRow!.row]
+            let vwRoutineDetail = segue.destination as! RoutineDetailViewController
+            vwRoutineDetail.routineAux = selectedRoutine
         }
     }
     

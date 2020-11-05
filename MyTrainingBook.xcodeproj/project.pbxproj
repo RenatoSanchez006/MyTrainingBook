@@ -19,6 +19,9 @@
 		328C21F2255083B300C75C38 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C21F1255083B300C75C38 /* Routine.swift */; };
 		328C21F42551250400C75C38 /* NewRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C21F32551250400C75C38 /* NewRoutineViewController.swift */; };
 		329591A125381B1500E15265 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329591A025381B1500E15265 /* SimpleButton.swift */; };
+		32BEB85B255385F500CE276F /* RoutineDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BEB85A255385F500CE276F /* RoutineDetailViewController.swift */; };
+		32BEB85E25538D6C00CE276F /* ExerciseCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BEB85C25538D6C00CE276F /* ExerciseCellTableViewCell.swift */; };
+		32BEB85F25538D6C00CE276F /* ExerciseCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32BEB85D25538D6C00CE276F /* ExerciseCellTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		328C21F1255083B300C75C38 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routine.swift; path = ObjClass/Routine.swift; sourceTree = "<group>"; };
 		328C21F32551250400C75C38 /* NewRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewRoutineViewController.swift; path = ViewControllers/NewRoutineViewController.swift; sourceTree = "<group>"; };
 		329591A025381B1500E15265 /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimpleButton.swift; path = Components/SimpleButton.swift; sourceTree = "<group>"; };
+		32BEB85A255385F500CE276F /* RoutineDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoutineDetailViewController.swift; path = ViewControllers/RoutineDetailViewController.swift; sourceTree = "<group>"; };
+		32BEB85C25538D6C00CE276F /* ExerciseCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseCellTableViewCell.swift; path = MyTrainingBook/Components/ExerciseCellTableViewCell.swift; sourceTree = "<group>"; };
+		32BEB85D25538D6C00CE276F /* ExerciseCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ExerciseCellTableViewCell.xib; path = MyTrainingBook/Components/ExerciseCellTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +58,8 @@
 		321C5D6925369F6100812174 = {
 			isa = PBXGroup;
 			children = (
+				32BEB85C25538D6C00CE276F /* ExerciseCellTableViewCell.swift */,
+				32BEB85D25538D6C00CE276F /* ExerciseCellTableViewCell.xib */,
 				321C5D7425369F6100812174 /* MyTrainingBook */,
 				321C5D7325369F6100812174 /* Products */,
 			);
@@ -72,6 +80,7 @@
 				321C5D7725369F6100812174 /* SceneDelegate.swift */,
 				321C5D7B25369F6100812174 /* Main.storyboard */,
 				32009B9C2537FDD3006CD075 /* ExercisesViewController.swift */,
+				32BEB85A255385F500CE276F /* RoutineDetailViewController.swift */,
 				328C21EF25507EBD00C75C38 /* RoutinesViewController.swift */,
 				32009BA0253801AB006CD075 /* NewExerciseViewController.swift */,
 				32009B9E2537FE23006CD075 /* Exercise.swift */,
@@ -144,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				321C5D8225369F6400812174 /* LaunchScreen.storyboard in Resources */,
+				32BEB85F25538D6C00CE276F /* ExerciseCellTableViewCell.xib in Resources */,
 				321C5D7F25369F6400812174 /* Assets.xcassets in Resources */,
 				321C5D7D25369F6100812174 /* Main.storyboard in Resources */,
 			);
@@ -159,9 +169,11 @@
 				32009B9F2537FE23006CD075 /* Exercise.swift in Sources */,
 				321C5D7625369F6100812174 /* AppDelegate.swift in Sources */,
 				321C5D7825369F6100812174 /* SceneDelegate.swift in Sources */,
+				32BEB85E25538D6C00CE276F /* ExerciseCellTableViewCell.swift in Sources */,
 				32009B9D2537FDD3006CD075 /* ExercisesViewController.swift in Sources */,
 				328C21F025507EBD00C75C38 /* RoutinesViewController.swift in Sources */,
 				328C21F42551250400C75C38 /* NewRoutineViewController.swift in Sources */,
+				32BEB85B255385F500CE276F /* RoutineDetailViewController.swift in Sources */,
 				32009BA1253801AB006CD075 /* NewExerciseViewController.swift in Sources */,
 				328C21F2255083B300C75C38 /* Routine.swift in Sources */,
 				329591A125381B1500E15265 /* SimpleButton.swift in Sources */,
