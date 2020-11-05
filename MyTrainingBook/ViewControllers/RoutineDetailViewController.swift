@@ -10,15 +10,21 @@ import UIKit
 
 class RoutineDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lbType: UITextField!
+    @IBOutlet weak var lbSets: UITextField!
+    
     var routineAux: Routine!
     var routineExercises: [Exercise] = []
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         navigationItem.title = routineAux.name
+        lbType.text = routineAux.type
+        lbSets.text = String(routineAux.routineSets)
+        
         routineExercises = routineAux.exercises
         tableView.register(UINib(nibName: "ExerciseCellTableViewCell", bundle: nil), forCellReuseIdentifier: "exerciseCell")
         
