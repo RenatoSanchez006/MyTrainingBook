@@ -10,17 +10,17 @@ import UIKit
 
 class Exercise: Codable {
     var name: String!
-    var type: String!
-    var instructions: String!
+    var type: String
     var defRepetitions: Int!
     var _id: UUID!
+    var difficulty: String!
     
-    init(name: String, type: String, instructions: String, defRepetitions: Int) {
+    init(name: String, type: String, defRepetitions: Int, difficulty: String) {
         self._id = UUID()
         self.name = name
         self.type = type
-        self.instructions = instructions
         self.defRepetitions = defRepetitions
+        self.difficulty = difficulty
     }
 }
 

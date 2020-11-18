@@ -17,9 +17,9 @@ class NewExerciseViewController: UIViewController {
     // Storyboard Outlets
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfType: UITextField!
-    @IBOutlet weak var tfInstructions: UITextField!
     @IBOutlet weak var tfDefReps: UITextField!
     @IBOutlet weak var btnSave: SimpleButton!
+    @IBOutlet weak var sgDifficulty: UISegmentedControl!
     
     // Protocol Management delegate
     var delegate: NewExerciseProtocol!
@@ -48,11 +48,11 @@ class NewExerciseViewController: UIViewController {
         
         // Verify and get defaults for UITextField if needed
         let exerciseType = tfIsEmpty(field: tfType, defaultText: "None")
-        let exerciseInstructions = tfIsEmpty(field: tfInstructions, defaultText: "None")
         let exerciseReps = tfIsEmpty(field: tfDefReps, defaultText: "10")
+        let exerciseDifficulty = sgDifficulty.titleForSegment(at: sgDifficulty.selectedSegmentIndex)!
         
         // Create and send newExercise to delegate
-        let newExercise = Exercise(name: name, type: exerciseType, instructions: exerciseInstructions, defRepetitions: Int(exerciseReps)!)
+        let newExercise = Exercise(name: name, type: exerciseType, defRepetitions: Int(exerciseReps)!, difficulty: exerciseDifficulty)
         delegate.createExercise(newExercise: newExercise)
         return true
     }
