@@ -13,6 +13,9 @@ class RoutineDetailViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lbType: UITextField!
     @IBOutlet weak var lbSets: UITextField!
+    @IBOutlet weak var lbInstructions: UITextField!
+    @IBOutlet weak var sgDifficulty: UISegmentedControl!
+    @IBOutlet weak var btnStart: SimpleButton!
     
     var routineAux: Routine!
     var routineExercises: [Exercise] = []
@@ -24,12 +27,29 @@ class RoutineDetailViewController: UIViewController, UITableViewDataSource, UITa
         navigationItem.title = routineAux.name
         lbType.text = routineAux.type
         lbSets.text = String(routineAux.routineSets)
+        lbInstructions.text = routineAux.instructions
+        let index = getSegmentedControlIndex(difficulty: routineAux.difficulty)
+        sgDifficulty.selectedSegmentIndex = index
         
         routineExercises = routineAux.exercises
         tableView.register(UINib(nibName: "ExerciseCellTableViewCell", bundle: nil), forCellReuseIdentifier: "exerciseCell")
         
     }
     
+    func getSegmentedControlIndex(difficulty: String) -> Int {
+        switch difficulty {
+        case "Easy":
+            return 0
+        case "Medium":
+            return 1
+        case "Hard":
+            return 2
+        default:
+            return 0
+        }
+    }
+    
+    // MARK: - Methods for Table View Controller
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routineAux.exercises.count
     }

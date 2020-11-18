@@ -19,9 +19,7 @@ class NewRoutineExercisesViewController: UIViewController, UITableViewDelegate, 
     var selectedExercises: [Exercise] = []
     
     // Auxiliar variables
-    var nameAux: String!
-    var typeAux: String!
-    var setsAux: Int!
+    var newRoutine: Routine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +51,11 @@ class NewRoutineExercisesViewController: UIViewController, UITableViewDelegate, 
             return false
         }
         
-        // Create and send newExercise to Observer
-        let newRoutine = ["routine" : Routine(name: nameAux, type: typeAux, exercises: selectedExercises, routineSets: Int(setsAux))]
+        // Add exercises and send newExercise to Observer
+        newRoutine.setExercises(exercises: selectedExercises)
+        let notificationObj = ["routine" : newRoutine]
         let notification = Notification.Name(rawValue: "didReceiveRoutine")
-        NotificationCenter.default.post(name: notification, object: newRoutine)
+        NotificationCenter.default.post(name: notification, object: notificationObj)
         
         return true
     }

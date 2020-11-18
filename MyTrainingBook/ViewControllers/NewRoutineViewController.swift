@@ -14,6 +14,8 @@ class NewRoutineViewController: UIViewController {
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfType: UITextField!
     @IBOutlet weak var tfSets: UITextField!
+    @IBOutlet weak var tfInstructions: UITextField!
+    @IBOutlet weak var sgDifficulty: UISegmentedControl!
     @IBOutlet weak var btnNext: SimpleButton!
     
     
@@ -23,7 +25,7 @@ class NewRoutineViewController: UIViewController {
     
     // MARK: - Utils
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let newVw = segue.destination as! NewRoutineExercisesViewController
+        let vwRoutineExercises = segue.destination as! NewRoutineExercisesViewController
         // Verify if tfName is empty
         let name = tfName.text!.trimmingCharacters(in: .whitespaces)
         if name.isEmpty {
@@ -32,11 +34,12 @@ class NewRoutineViewController: UIViewController {
         
         // Verify and get defaults for UITextField if needed
         let routineType = tfIsEmpty(field: tfType, defaultText: "None")
-        let routineSets = tfIsEmpty(field: tfSets, defaultText: "3")
+        let routineSets = Int(tfIsEmpty(field: tfSets, defaultText: "3"))!
+        let routineInstructions = tfIsEmpty(field: tfInstructions, defaultText: "None")
+        let routineDifficulty = sgDifficulty.titleForSegment(at: sgDifficulty.selectedSegmentIndex)!
         
-        newVw.nameAux = name
-        newVw.typeAux = routineType
-        newVw.setsAux = Int(routineSets)
+        let newRoutine = Routine(name: name, type: routineType, routineSets: routineSets, instructions: routineInstructions, difficulty: routineDifficulty)
+        vwRoutineExercises.newRoutine = newRoutine
     }
     
     // Alert to ask for at least an exercise name
