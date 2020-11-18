@@ -8,12 +8,18 @@
 
 import UIKit
 
-class RoutinesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, newRoutineProtocol {
+class RoutinesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
     // Dummy List
     var listRoutines: [Routine] = []
+    
+    let notification = Notification.Name(rawValue: "didReceiveRoutine")
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +27,18 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
         if FileManager.default.fileExists(atPath: getFileUrl().path){
             getRoutines()
         }
+        
+        // Creating Observer
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveRoutine(_:)), name: notification, object: nil)
+    }
+    
+    // Function to execute when new Routine is created
+    @objc func onDidReceiveRoutine(_ notification: Notification) {
+        let dictionary = notification.object as! NSDictionary
+        let data = dictionary["routine"] as! Routine
+        listRoutines.append(data)
+        tableView.reloadData()
+        saveRoutines()
     }
     
     // MARK: - Methods for Table View Controller
@@ -47,19 +65,9 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // MARK: - Protocol Management
-    func createRoutine(newRoutine: Routine) {
-        listRoutines.append(newRoutine)
-        tableView.reloadData()
-        saveRoutines()
-    }
-    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newRoutineSegue" {
-            let vwNewRoutine = segue.destination as! NewRoutineViewController
-            vwNewRoutine.delegate = self
-        } else {
+        if segue.identifier == "routineDetailSegue" {
             let selectedRoutine = listRoutines[tableView.indexPathForSelectedRow!.row]
             let vwRoutineDetail = segue.destination as! RoutineDetailViewController
             vwRoutineDetail.routineAux = selectedRoutine

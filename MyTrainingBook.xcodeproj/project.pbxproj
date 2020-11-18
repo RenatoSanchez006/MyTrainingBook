@@ -15,6 +15,7 @@
 		321C5D7D25369F6100812174 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321C5D7B25369F6100812174 /* Main.storyboard */; };
 		321C5D7F25369F6400812174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 321C5D7E25369F6400812174 /* Assets.xcassets */; };
 		321C5D8225369F6400812174 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321C5D8025369F6400812174 /* LaunchScreen.storyboard */; };
+		3222DA3B2564C21F00119216 /* NewRoutineExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3222DA3A2564C21F00119216 /* NewRoutineExercisesViewController.swift */; };
 		328C21F025507EBD00C75C38 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C21EF25507EBD00C75C38 /* RoutinesViewController.swift */; };
 		328C21F2255083B300C75C38 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C21F1255083B300C75C38 /* Routine.swift */; };
 		328C21F42551250400C75C38 /* NewRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C21F32551250400C75C38 /* NewRoutineViewController.swift */; };
@@ -36,6 +37,7 @@
 		321C5D7E25369F6400812174 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		321C5D8125369F6400812174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		321C5D8325369F6400812174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3222DA3A2564C21F00119216 /* NewRoutineExercisesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewRoutineExercisesViewController.swift; path = MyTrainingBook/ViewControllers/NewRoutineExercisesViewController.swift; sourceTree = "<group>"; };
 		328C21EF25507EBD00C75C38 /* RoutinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoutinesViewController.swift; path = ViewControllers/RoutinesViewController.swift; sourceTree = "<group>"; };
 		328C21F1255083B300C75C38 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routine.swift; path = ObjClass/Routine.swift; sourceTree = "<group>"; };
 		328C21F32551250400C75C38 /* NewRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewRoutineViewController.swift; path = ViewControllers/NewRoutineViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 		321C5D6925369F6100812174 = {
 			isa = PBXGroup;
 			children = (
+				3222DA3A2564C21F00119216 /* NewRoutineExercisesViewController.swift */,
 				32BEB85C25538D6C00CE276F /* ExerciseCellTableViewCell.swift */,
 				32BEB85D25538D6C00CE276F /* ExerciseCellTableViewCell.xib */,
 				321C5D7425369F6100812174 /* MyTrainingBook */,
@@ -173,6 +176,7 @@
 				321C5D7625369F6100812174 /* AppDelegate.swift in Sources */,
 				321C5D7825369F6100812174 /* SceneDelegate.swift in Sources */,
 				32BEB85E25538D6C00CE276F /* ExerciseCellTableViewCell.swift in Sources */,
+				3222DA3B2564C21F00119216 /* NewRoutineExercisesViewController.swift in Sources */,
 				32009B9D2537FDD3006CD075 /* ExercisesViewController.swift in Sources */,
 				328C21F025507EBD00C75C38 /* RoutinesViewController.swift in Sources */,
 				328C21F42551250400C75C38 /* NewRoutineViewController.swift in Sources */,
