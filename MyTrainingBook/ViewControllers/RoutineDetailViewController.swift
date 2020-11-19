@@ -49,6 +49,11 @@ class RoutineDetailViewController: UIViewController, UITableViewDataSource, UITa
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vwStartRoutine = segue.destination as! StartRoutineViewController
+        vwStartRoutine.routineAux = routineAux
+    }
+    
     // MARK: - Methods for Table View Controller
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routineAux.exercises.count
