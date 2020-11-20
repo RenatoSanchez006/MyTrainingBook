@@ -134,6 +134,12 @@
                         <viewLayoutGuide key="safeArea" id="PKp-JR-MIN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Routines" id="LY8-gc-Qqc">
+                        <barButtonItem key="leftBarButtonItem" image="info.circle.fill" catalog="system" style="plain" id="GYr-zv-aLf">
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="credits:" destination="t8j-Kf-EHA" id="AZZ-7M-qGQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="ePj-W8-FTe">
                             <connections>
                                 <segue destination="pgQ-nt-dP2" kind="show" identifier="newRoutineSegue" id="HhG-JX-sjS"/>
@@ -967,7 +973,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="B6X-ZG-CDV"/>
+        <segue reference="HhG-JX-sjS"/>
         <segue reference="OLi-n1-uix"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.43529411759999997" green="0.25882352939999997" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -975,6 +981,7 @@
         <image name="arrow.2.circlepath.circle.fill" catalog="system" width="128" height="121"/>
         <image name="bolt.fill" catalog="system" width="101" height="128"/>
         <image name="book.fill" catalog="system" width="128" height="100"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="play.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

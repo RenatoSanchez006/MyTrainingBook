@@ -125,5 +125,15 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         tableView.reloadData()
     }
-
+    
+    @IBAction func credits(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "Credits",
+            message: "My Training book app was developed by Renato Sánchez",
+            preferredStyle: .alert
+        )
+        let action = UIAlertAction(title: "Thanks!", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion:  nil)
+    }
 }
