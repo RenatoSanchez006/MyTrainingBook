@@ -13,23 +13,77 @@ class RoutineDetailViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lbType: UITextField!
     @IBOutlet weak var lbSets: UITextField!
+    @IBOutlet weak var lbInstructions: UITextField!
+    @IBOutlet weak var sgDifficulty: UISegmentedControl!
+    @IBOutlet weak var btnStart: SimpleButton!
     
     var routineAux: Routine!
     var routineExercises: [Exercise] = []
     
+    let updateRoutineNotification = Notification.Name(rawValue: "updateRoutine")
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Setting up the view
+        setTextFields(routine: routineAux)
+        tableView.register(UINib(nibName: "ExerciseCellTableViewCell", bundle: nil), forCellReuseIdentifier: "exerciseCell")
+        
+        // Creating Observer for updated Routine
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveUpdatedRoutine(_:)), name: updateRoutineNotification, object: nil)
+    }
+    
+    // MARK: - Observer Methods
+    @objc func onDidReceiveUpdatedRoutine(_ notification: Notification) {
+        let dictionary = notification.object as! NSDictionary
+        let data = dictionary["routine"] as! Routine
+        routineAux = data
+        setTextFields(routine: routineAux)
+        tableView.reloadData()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "startRoutine" {
+            let vwStartRoutine = segue.destination as! StartRoutineViewController
+            vwStartRoutine.routineAux = routineAux
+        } else {
+            // segue identifer is "editRoutine"
+            let vwEditRoutine = segue.destination as! NewRoutineViewController
+            vwEditRoutine.isEditionMode = true
+            vwEditRoutine.routineAux = routineAux
+        }
+    }
+    
+    // MARK: - Utils
+    func setTextFields(routine: Routine) {
         navigationItem.title = routineAux.name
         lbType.text = routineAux.type
         lbSets.text = String(routineAux.routineSets)
+        lbInstructions.text = routineAux.instructions
+        let index = getSegmentedControlIndex(difficulty: routineAux.difficulty)
+        sgDifficulty.selectedSegmentIndex = index
         
         routineExercises = routineAux.exercises
-        tableView.register(UINib(nibName: "ExerciseCellTableViewCell", bundle: nil), forCellReuseIdentifier: "exerciseCell")
-        
     }
     
+    func getSegmentedControlIndex(difficulty: String) -> Int {
+        switch difficulty {
+        case "Easy":
+            return 0
+        case "Medium":
+            return 1
+        case "Hard":
+            return 2
+        default:
+            return 0
+        }
+    }
+    
+    // MARK: - Methods for Table View Controller
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routineAux.exercises.count
     }

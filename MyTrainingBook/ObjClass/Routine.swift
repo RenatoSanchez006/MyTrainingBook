@@ -14,13 +14,24 @@ class Routine: Codable {
     var type: String!
     var exercises: [Exercise]!
     var routineSets: Int!
+    var instructions: String!
+    var difficulty: String!
     
-    init(name: String, type: String, exercises: [Exercise], routineSets: Int) {
+    init(name: String, type: String, routineSets: Int, instructions: String, difficulty: String) {
         self._id = UUID()
         self.name = name
         self.type = type
-        self.exercises = exercises
         self.routineSets = routineSets
+        self.instructions = instructions
+        self.difficulty = difficulty
+    }
+    
+    public func setExercises(exercises: [Exercise]) {
+        self.exercises = exercises
+    }
+    
+    public func setID(_ id: UUID) {
+        self._id = id
     }
 }
 

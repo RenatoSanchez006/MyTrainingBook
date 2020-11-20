@@ -21,7 +21,7 @@ class SimpleButton: UIButton {
     }
     
     func setUpButton() {
-        backgroundColor = UIColor.link
+        backgroundColor = UIColor(red: 0.435, green: 0.259, blue: 0.756, alpha: 1) // purple
         layer.cornerRadius = 10
         setTitleColor(.white , for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)

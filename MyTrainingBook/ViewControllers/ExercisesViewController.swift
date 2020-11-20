@@ -8,11 +8,16 @@
 
 import UIKit
 
-class ExercisesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewExerciseProtocol {
+class ExercisesViewController: UIViewController,
+    UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
     var exerciseList: [Exercise] = []
+    
+    let updateExerciseNotification = Notification.Name(rawValue: "updateExercise")
+    let newExerciseNotification = Notification.Name(rawValue: "newExercise")
+    deinit { NotificationCenter.default.removeObserver(self) }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +25,20 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
         if FileManager.default.fileExists(atPath: getFileUrl().path) {
             getExercises()
         }
+        
+        // Creating Observer for updated and newExercise
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDidReceiveUpdatedExercise(_:)),
+            name: updateExerciseNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDidReceiveNewExercise),
+            name: newExerciseNotification,
+            object: nil
+        )
     }
     
     // MARK: - Methods For Table View Controller
@@ -47,19 +66,27 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // MARK: - Protocol Management
-    func createExercise(newExercise: Exercise) {
-        exerciseList.append(newExercise)
+    // MARK: - Observer functions
+    @objc func onDidReceiveUpdatedExercise(_ notification: Notification) {
+        let dictionary = notification.object as! NSDictionary
+        let data = dictionary["exercise"] as! Exercise
+        let index = exerciseList.firstIndex(where: { $0._id == data._id })!
+        exerciseList[index] = data
+        tableView.reloadData()
+        saveExercises()
+    }
+    
+    @objc func onDidReceiveNewExercise(_ notification: Notification) {
+        let dictionary = notification.object as! NSDictionary
+        let data = dictionary["exercise"] as! Exercise
+        exerciseList.append(data)
         tableView.reloadData()
         saveExercises()
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newExerciseSegue" {
-            let vwNewExercise = segue.destination as! NewExerciseViewController
-            vwNewExercise.delegate = self
-        } else {
+        if segue.identifier == "exerciseDetailSegue" {
             let selectedExercise = exerciseList[tableView.indexPathForSelectedRow!.row]
             let vwDetailExercise = segue.destination as! ExerciseDetailViewController
             vwDetailExercise.exercise = selectedExercise

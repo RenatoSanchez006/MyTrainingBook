@@ -8,12 +8,19 @@
 
 import UIKit
 
-class RoutinesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, newRoutineProtocol {
+class RoutinesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
     // Dummy List
     var listRoutines: [Routine] = []
+    
+    let newRoutineNotification = Notification.Name(rawValue: "newRoutine")
+    let updateRoutineNotification = Notification.Name(rawValue: "updateRoutine")
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +28,40 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
         if FileManager.default.fileExists(atPath: getFileUrl().path){
             getRoutines()
         }
+        
+        // Creating Observers
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDidReceiveNewRoutine(_:)),
+            name: newRoutineNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDidReceiveUpdatedRoutine(_:)),
+            name: updateRoutineNotification,
+            object: nil
+        )
+    }
+    
+    // MARK: - Observers Methoods
+    // Function to execute when new Routine is created
+    @objc func onDidReceiveNewRoutine(_ notification: Notification) {
+        let dictionary = notification.object as! NSDictionary
+        let data = dictionary["routine"] as! Routine
+        listRoutines.append(data)
+        tableView.reloadData()
+        saveRoutines()
+    }
+    
+    // Function to execute when a Routine is edited
+    @objc func onDidReceiveUpdatedRoutine(_ notification: Notification) {
+        let dictionary = notification.object as! NSDictionary
+        let data = dictionary["routine"] as! Routine
+        let index = listRoutines.firstIndex(where: { $0._id == data._id })!
+        listRoutines[index] = data
+        tableView.reloadData()
+        saveRoutines()
     }
     
     // MARK: - Methods for Table View Controller
@@ -47,19 +88,9 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // MARK: - Protocol Management
-    func createRoutine(newRoutine: Routine) {
-        listRoutines.append(newRoutine)
-        tableView.reloadData()
-        saveRoutines()
-    }
-    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newRoutineSegue" {
-            let vwNewRoutine = segue.destination as! NewRoutineViewController
-            vwNewRoutine.delegate = self
-        } else {
+        if segue.identifier == "routineDetailSegue" {
             let selectedRoutine = listRoutines[tableView.indexPathForSelectedRow!.row]
             let vwRoutineDetail = segue.destination as! RoutineDetailViewController
             vwRoutineDetail.routineAux = selectedRoutine
@@ -94,5 +125,15 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         tableView.reloadData()
     }
-
+    
+    @IBAction func credits(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "Credits",
+            message: "My Training book app was developed by Renato Sánchez",
+            preferredStyle: .alert
+        )
+        let action = UIAlertAction(title: "Thanks!", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion:  nil)
+    }
 }

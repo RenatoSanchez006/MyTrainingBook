@@ -8,66 +8,48 @@
 
 import UIKit
 
-protocol newRoutineProtocol {
-    func createRoutine(newRoutine: Routine)
-}
-
-class NewRoutineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NewRoutineViewController: UIViewController {
     
     // Storyboard Outlets
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfType: UITextField!
     @IBOutlet weak var tfSets: UITextField!
-    @IBOutlet weak var btnSave: SimpleButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tfInstructions: UITextField!
+    @IBOutlet weak var sgDifficulty: UISegmentedControl!
+    @IBOutlet weak var btnNext: SimpleButton!
     
-    var exerciseList: [Exercise] = []
-    var selectedExercises: [Exercise] = []
-    var delegate: newRoutineProtocol!
+    var isEditionMode: Bool = false
+    var routineAux: Routine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnSave.addTarget(self, action: #selector(btnSaveTapped), for: .touchUpInside)
-        
-        // Register Custom Table View Cell
-        tableView.register(UINib(nibName: "ExerciseCellTableViewCell", bundle: nil), forCellReuseIdentifier: "exerciseCell")
-        
-        if FileManager.default.fileExists(atPath: getFileUrl().path) {
-            getExercises()
-        }
+        if isEditionMode { setTextFields(routine: routineAux) }
     }
     
     // MARK: - Utils
-    // If exercise is saved close view
-    @objc func btnSaveTapped () {
-        if saveRoutine() {
-            navigationController?.popViewController(animated: true)
-            dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    // Saves exercise if name is provided
-    func saveRoutine () -> Bool {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vwRoutineExercises = segue.destination as! NewRoutineExercisesViewController
         // Verify if tfName is empty
         let name = tfName.text!.trimmingCharacters(in: .whitespaces)
-        if name.isEmpty || selectedExercises.isEmpty {
+        if name.isEmpty {
             sendAlert()
-            return false
         }
         
         // Verify and get defaults for UITextField if needed
         let routineType = tfIsEmpty(field: tfType, defaultText: "None")
-        let routineSets = tfIsEmpty(field: tfSets, defaultText: "3")
+        let routineSets = Int(tfIsEmpty(field: tfSets, defaultText: "3"))!
+        let routineInstructions = tfIsEmpty(field: tfInstructions, defaultText: "None")
+        let routineDifficulty = sgDifficulty.titleForSegment(at: sgDifficulty.selectedSegmentIndex)!
         
-        // Create and send newExercise to delegate
-        let newRoutine = Routine(name: name, type: routineType, exercises: selectedExercises, routineSets: Int(routineSets)!)
-        delegate.createRoutine(newRoutine: newRoutine)
-        return true
+        let newRoutine = Routine(name: name, type: routineType, routineSets: routineSets, instructions: routineInstructions, difficulty: routineDifficulty)
+        if isEditionMode { newRoutine.setID(routineAux._id) }
+        vwRoutineExercises.newRoutine = newRoutine
+        vwRoutineExercises.isEditionMode = isEditionMode
     }
-     
+    
     // Alert to ask for at least an exercise name
     func sendAlert() {
-        let alert = UIAlertController(title: "Hey!", message: "Your routine needs at least a name and exercises", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Hey!", message: "Your routine needs at least a name", preferredStyle: .alert)
         let action = UIAlertAction(title: "Got it", style: .cancel, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion:  nil)
@@ -82,50 +64,27 @@ class NewRoutineViewController: UIViewController, UITableViewDelegate, UITableVi
         return textField
     }
     
-    // MARK: - Methods for Table View Controller
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exerciseList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell") as! ExerciseCellTableViewCell
-        cell.lbName?.text = exerciseList[indexPath.row].name
-        cell.lbType?.text = exerciseList[indexPath.row].type
-        cell.lbReps?.text = String(exerciseList[indexPath.row].defRepetitions)
-        return cell
+    func setTextFields(routine: Routine) {
+        navigationItem.title = "Edit Routine"
+        tfName.text = routine.name
+        tfType.text = routine.type
+        tfSets.text = String(routine.routineSets)
+        tfInstructions.text = routine.instructions
+        let index = getSegmentedControlIndex(difficulty: routine.difficulty)
+        sgDifficulty.selectedSegmentIndex = index
     }
     
-    // Appending selected row
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedExercises.append(exerciseList[indexPath.row])
-    }
-    
-    // Removing deselected row
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let index = selectedExercises.firstIndex { (item) -> Bool in
-            item._id == exerciseList[indexPath.row]._id
+    func getSegmentedControlIndex(difficulty: String) -> Int {
+        switch difficulty {
+        case "Easy":
+            return 0
+        case "Medium":
+            return 1
+        case "Hard":
+            return 2
+        default:
+            return 0
         }
-        selectedExercises.remove(at: index!)
-    }
-    
-    // MARK: - Exercise Persistence Management
-    func getFileUrl() -> URL {
-        let url = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-        let filePath = url.appendingPathComponent("Exercises.plist")
-        return filePath
-    }
-    
-    func getExercises() {
-        exerciseList.removeAll()
-        
-        do {
-            let data = try Data.init(contentsOf: getFileUrl())
-            exerciseList = try PropertyListDecoder().decode([Exercise].self, from: data)
-        }
-        catch {
-            print("Couldn't load file")
-        }
-        tableView.reloadData()
     }
 }
 
