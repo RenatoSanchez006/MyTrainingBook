@@ -19,9 +19,7 @@ class ExerciseDetailViewController: UIViewController {
     var exercise: Exercise!
     
     let updateExerciseNotification = Notification.Name(rawValue: "updateExercise")
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+    deinit { NotificationCenter.default.removeObserver(self) }
     
     override func viewDidLoad() {
         super.viewDidLoad()

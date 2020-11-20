@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol NewExerciseProtocol {
-    func createExercise(newExercise: Exercise)
-}
-
 class NewExerciseViewController: UIViewController {
     
     // Storyboard Outlets
@@ -25,9 +21,6 @@ class NewExerciseViewController: UIViewController {
     // Auxiliar variables
     var isEditionMode: Bool = false
     var exerciseAux: Exercise!
-    
-    // Protocol Management delegate
-    var delegate: NewExerciseProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +60,9 @@ class NewExerciseViewController: UIViewController {
             let updateExerciseNotification = Notification.Name(rawValue: "updateExercise")
             NotificationCenter.default.post(name: updateExerciseNotification, object: notificationObj)
         } else {
-            delegate.createExercise(newExercise: newExercise)
+            let notificationObj = ["exercise" : newExercise]
+            let newExerciseNotification = Notification.Name(rawValue: "newExercise")
+            NotificationCenter.default.post(name: newExerciseNotification, object: notificationObj)
         }
         return true
     }

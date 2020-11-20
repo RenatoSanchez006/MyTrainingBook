@@ -63,7 +63,7 @@
                         <viewLayoutGuide key="safeArea" id="c7f-rg-FRK"/>
                     </view>
                     <navigationItem key="navigationItem" title="Exercises" id="3kh-ZZ-QFp">
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="cQa-u9-Eud">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="done" systemItem="add" id="cQa-u9-Eud">
                             <connections>
                                 <segue destination="9jg-O1-2K5" kind="presentation" identifier="newExerciseSegue" id="Vub-JE-4ra"/>
                             </connections>
@@ -134,7 +134,7 @@
                         <viewLayoutGuide key="safeArea" id="PKp-JR-MIN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Routines" id="LY8-gc-Qqc">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ePj-W8-FTe">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="ePj-W8-FTe">
                             <connections>
                                 <segue destination="pgQ-nt-dP2" kind="show" identifier="newRoutineSegue" id="HhG-JX-sjS"/>
                             </connections>
@@ -604,7 +604,7 @@
                         <viewLayoutGuide key="safeArea" id="EVn-f8-26K"/>
                     </view>
                     <navigationItem key="navigationItem" title="Routine Name" id="BrQ-e8-NK7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Vkf-Zb-b5g">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="edit" id="Vkf-Zb-b5g">
                             <connections>
                                 <segue destination="pgQ-nt-dP2" kind="show" identifier="editRoutine" id="B6X-ZG-CDV"/>
                             </connections>
@@ -692,7 +692,7 @@
                         <viewLayoutGuide key="safeArea" id="weZ-8N-9ud"/>
                     </view>
                     <navigationItem key="navigationItem" title="Exercise Name" id="zTt-mF-IgF">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MlX-Fn-dxh">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="edit" id="MlX-Fn-dxh">
                             <connections>
                                 <segue destination="9jg-O1-2K5" kind="presentation" identifier="editExercise" id="OLi-n1-uix"/>
                             </connections>
@@ -751,7 +751,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RJ5-lU-95W"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="GcS-8M-Q3C"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="GcS-8M-Q3C">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="BMG-UI-mqA">
+                            <connections>
+                                <segue destination="9jg-O1-2K5" kind="presentation" id="WU0-8P-ZLm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnSave" destination="KuM-OD-aP7" id="Ptf-0i-tRH"/>
                         <outlet property="tableView" destination="Cep-Nj-yAw" id="kyf-5L-6vD"/>
@@ -962,7 +968,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="B6X-ZG-CDV"/>
-        <segue reference="Vub-JE-4ra"/>
+        <segue reference="OLi-n1-uix"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.43529411759999997" green="0.25882352939999997" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

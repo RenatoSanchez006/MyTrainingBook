@@ -21,6 +21,7 @@ class NewRoutineExercisesViewController: UIViewController, UITableViewDelegate, 
     // Auxiliar variables
     var newRoutine: Routine!
     var isEditionMode: Bool = false
+    let newExerciseNotification = Notification.Name(rawValue: "newExercise")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +32,22 @@ class NewRoutineExercisesViewController: UIViewController, UITableViewDelegate, 
         // Register Custom Table View Cell
         tableView.register(UINib(nibName: "ExerciseCellTableViewCell", bundle: nil), forCellReuseIdentifier: "exerciseCell")
         
+        // Adding observer for new exercise
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDidReceiveNewExercise),
+            name: newExerciseNotification,
+            object: nil
+        )
+        
         // Get Exercises saved
         if FileManager.default.fileExists(atPath: getFileUrl().path) {
             getExercises()
         }
+    }
+    
+    @objc func onDidReceiveNewExercise(_ notification: Notification) {
+        getExercises()
     }
     
     // Save routine and pop to root view controller
