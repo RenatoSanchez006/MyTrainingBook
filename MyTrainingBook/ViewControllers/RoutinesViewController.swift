@@ -15,7 +15,8 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
     // Dummy List
     var listRoutines: [Routine] = []
     
-    let notification = Notification.Name(rawValue: "didReceiveRoutine")
+    let newRoutineNotification = Notification.Name(rawValue: "newRoutine")
+    let updateRoutineNotification = Notification.Name(rawValue: "updateRoutine")
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -28,15 +29,38 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
             getRoutines()
         }
         
-        // Creating Observer
-        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveRoutine(_:)), name: notification, object: nil)
+        // Creating Observers
+        NotificationCenter.default.addObserver(
+            self,
+            selector:
+            #selector(onDidReceiveNewRoutine(_:)),
+            name: newRoutineNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDidReceiveUpdatedRoutine(_:)),
+            name: updateRoutineNotification,
+            object: nil
+        )
     }
     
+    // MARK: - Observers Methoods
     // Function to execute when new Routine is created
-    @objc func onDidReceiveRoutine(_ notification: Notification) {
+    @objc func onDidReceiveNewRoutine(_ notification: Notification) {
         let dictionary = notification.object as! NSDictionary
         let data = dictionary["routine"] as! Routine
         listRoutines.append(data)
+        tableView.reloadData()
+        saveRoutines()
+    }
+    
+    // Function to execute when a Routine is edited
+    @objc func onDidReceiveUpdatedRoutine(_ notification: Notification) {
+        let dictionary = notification.object as! NSDictionary
+        let data = dictionary["routine"] as! Routine
+        let index = listRoutines.firstIndex(where: {$0._id == data._id})!
+        listRoutines[index] = data
         tableView.reloadData()
         saveRoutines()
     }

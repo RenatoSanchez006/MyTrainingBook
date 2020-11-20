@@ -18,9 +18,12 @@ class NewRoutineViewController: UIViewController {
     @IBOutlet weak var sgDifficulty: UISegmentedControl!
     @IBOutlet weak var btnNext: SimpleButton!
     
+    var isEditionMode: Bool = false
+    var routineAux: Routine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if isEditionMode { setTextFields(routine: routineAux) }
     }
     
     // MARK: - Utils
@@ -39,7 +42,9 @@ class NewRoutineViewController: UIViewController {
         let routineDifficulty = sgDifficulty.titleForSegment(at: sgDifficulty.selectedSegmentIndex)!
         
         let newRoutine = Routine(name: name, type: routineType, routineSets: routineSets, instructions: routineInstructions, difficulty: routineDifficulty)
+        if isEditionMode { newRoutine.setID(routineAux._id) }
         vwRoutineExercises.newRoutine = newRoutine
+        vwRoutineExercises.isEditionMode = isEditionMode
     }
     
     // Alert to ask for at least an exercise name
@@ -57,6 +62,29 @@ class NewRoutineViewController: UIViewController {
             return defaultText
         }
         return textField
+    }
+    
+    func setTextFields(routine: Routine) {
+        navigationItem.title = "Edit Routine"
+        tfName.text = routine.name
+        tfType.text = routine.type
+        tfSets.text = String(routine.routineSets)
+        tfInstructions.text = routine.instructions
+        let index = getSegmentedControlIndex(difficulty: routine.difficulty)
+        sgDifficulty.selectedSegmentIndex = index
+    }
+    
+    func getSegmentedControlIndex(difficulty: String) -> Int {
+        switch difficulty {
+        case "Easy":
+            return 0
+        case "Medium":
+            return 1
+        case "Hard":
+            return 2
+        default:
+            return 0
+        }
     }
 }
 

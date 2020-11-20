@@ -75,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zma-qf-k82" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2916" y="984"/>
+            <point key="canvasLocation" x="2914" y="1140"/>
         </scene>
         <!--Routines-->
         <scene sceneID="ulm-uD-1zG">
@@ -145,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nun-hK-yS8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2916" y="315"/>
+            <point key="canvasLocation" x="2886" y="453"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="LhQ-OV-dff">
@@ -182,7 +182,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QbG-wO-Lv3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2157.971014492754" y="314.73214285714283"/>
+            <point key="canvasLocation" x="2128" y="453"/>
         </scene>
         <!--Exercises-->
         <scene sceneID="wCE-9f-Bvs">
@@ -201,7 +201,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZ0-nD-qDo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2128.985507246377" y="984.375"/>
+            <point key="canvasLocation" x="2128" y="1140"/>
         </scene>
         <!--New Exercise-->
         <scene sceneID="db7-VE-njg">
@@ -310,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7v-JW-hGx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3743" y="984"/>
+            <point key="canvasLocation" x="3741" y="1140"/>
         </scene>
         <!--New Routine-->
         <scene sceneID="OD3-mE-dV1">
@@ -456,7 +456,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Iq-cw-Lj0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3741" y="315"/>
+            <point key="canvasLocation" x="3710" y="453"/>
         </scene>
         <!--Routine Detail-->
         <scene sceneID="OXr-tg-geO">
@@ -522,7 +522,7 @@
                                 <rect key="frame" x="30" y="822" width="354" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
-                                    <segue destination="KTV-3I-sTC" kind="show" id="ICC-6g-OJS"/>
+                                    <segue destination="KTV-3I-sTC" kind="show" identifier="startRoutine" id="ICC-6g-OJS"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqX-Wm-ahY">
@@ -587,7 +587,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EVn-f8-26K"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Routine Name" id="BrQ-e8-NK7"/>
+                    <navigationItem key="navigationItem" title="Routine Name" id="BrQ-e8-NK7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Vkf-Zb-b5g">
+                            <connections>
+                                <segue destination="pgQ-nt-dP2" kind="show" identifier="editRoutine" id="B6X-ZG-CDV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnStart" destination="0oE-Zk-drh" id="OW8-gZ-iAs"/>
                         <outlet property="lbInstructions" destination="JlU-Ia-fW6" id="faN-71-lmj"/>
@@ -599,7 +605,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOs-ed-tPW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3740.579710144928" y="-364.28571428571428"/>
+            <point key="canvasLocation" x="3709" y="-314"/>
         </scene>
         <!--Exercise Detail-->
         <scene sceneID="oF5-fU-ilO">
@@ -711,7 +717,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53N-i4-THL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3741" y="1706"/>
+            <point key="canvasLocation" x="3741" y="1873"/>
         </scene>
         <!--New Routine - Exercises-->
         <scene sceneID="NWt-P7-M8Q">
@@ -762,7 +768,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hev-MS-se6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4542" y="315"/>
+            <point key="canvasLocation" x="4510" y="453"/>
         </scene>
         <!--Start Routine-->
         <scene sceneID="Nxv-Ih-bZu">
@@ -961,9 +967,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmj-qt-PRA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4540.579710144928" y="-364.28571428571428"/>
+            <point key="canvasLocation" x="4509" y="-314"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="B6X-ZG-CDV"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.2.circlepath.circle.fill" catalog="system" width="128" height="121"/>
         <image name="icons8-dumbbell" width="50" height="50"/>

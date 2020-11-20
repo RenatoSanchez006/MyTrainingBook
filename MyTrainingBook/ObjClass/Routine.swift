@@ -29,6 +29,10 @@ class Routine: Codable {
     public func setExercises(exercises: [Exercise]) {
         self.exercises = exercises
     }
+    
+    public func setID(_ id: UUID) {
+        self._id = id
+    }
 }
 
 // MARK: - TODO'S

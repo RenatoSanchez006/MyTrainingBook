@@ -20,6 +20,7 @@ class NewRoutineExercisesViewController: UIViewController, UITableViewDelegate, 
     
     // Auxiliar variables
     var newRoutine: Routine!
+    var isEditionMode: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,14 @@ class NewRoutineExercisesViewController: UIViewController, UITableViewDelegate, 
     
     // Save routine and pop to root view controller
     @objc func btnSaveTapped() {
-        if saveRoutine(){
+        if saveRoutine() {
+            if isEditionMode {
+                for vwController in self.navigationController!.viewControllers {
+                    if vwController is RoutineDetailViewController {
+                        self.navigationController!.popToViewController(vwController, animated: true)
+                    }
+                }
+            }
             navigationController?.popToRootViewController(animated: true)
         }
     }
@@ -54,9 +62,13 @@ class NewRoutineExercisesViewController: UIViewController, UITableViewDelegate, 
         // Add exercises and send newExercise to Observer
         newRoutine.setExercises(exercises: selectedExercises)
         let notificationObj = ["routine" : newRoutine]
-        let notification = Notification.Name(rawValue: "didReceiveRoutine")
-        NotificationCenter.default.post(name: notification, object: notificationObj)
-        
+        if isEditionMode {
+            let updateRoutineNotification = Notification.Name(rawValue: "updateRoutine")
+            NotificationCenter.default.post(name: updateRoutineNotification, object: notificationObj)
+        } else {
+            let newRoutineNotification = Notification.Name(rawValue: "newRoutine")
+            NotificationCenter.default.post(name: newRoutineNotification, object: notificationObj)
+        }
         return true
     }
     
