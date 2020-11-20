@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ExercisesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewExerciseProtocol {
+class ExercisesViewController: UIViewController,
+    UITableViewDelegate, UITableViewDataSource,
+    NewExerciseProtocol, UpdateExerciseProtocol {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -54,15 +56,24 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
         saveExercises()
     }
     
+    func updateExercise(index: Int, exercise: Exercise) {
+        exerciseList[index] = exercise
+        tableView.reloadData()
+        saveExercises()
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newExerciseSegue" {
             let vwNewExercise = segue.destination as! NewExerciseViewController
             vwNewExercise.delegate = self
         } else {
-            let selectedExercise = exerciseList[tableView.indexPathForSelectedRow!.row]
+            let index = tableView.indexPathForSelectedRow!.row
+            let selectedExercise = exerciseList[index]
             let vwDetailExercise = segue.destination as! ExerciseDetailViewController
             vwDetailExercise.exercise = selectedExercise
+            vwDetailExercise.exerciseIndex = index
+            vwDetailExercise.delegate = self
         }
     }
     
