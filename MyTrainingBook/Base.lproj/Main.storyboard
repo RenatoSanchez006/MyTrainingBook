@@ -842,6 +842,7 @@
                                             </view>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Qfs-Ab-sHQ">
                                                 <rect key="frame" x="15.5" y="60" width="51" height="31"/>
+                                                <color key="onTintColor" red="0.43529411759999997" green="0.25882352939999997" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto Restart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqe-Mc-ACa">
                                                 <rect key="frame" x="7.5" y="91" width="65.5" height="22.5"/>
