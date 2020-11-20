@@ -302,6 +302,7 @@
                     <navigationItem key="navigationItem" id="3Mr-Lu-VMh"/>
                     <connections>
                         <outlet property="btnSave" destination="liB-rV-tUV" id="u0R-iN-u0t"/>
+                        <outlet property="lbTitle" destination="RQC-u4-i1Y" id="wcj-nc-SVL"/>
                         <outlet property="sgDifficulty" destination="hB8-Vj-uHy" id="CWW-s0-6Sp"/>
                         <outlet property="tfDefReps" destination="M7h-ig-NSb" id="qPq-5s-ktH"/>
                         <outlet property="tfName" destination="tQB-Iu-NBR" id="EQZ-oA-Y9G"/>
@@ -310,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7v-JW-hGx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3741" y="1140"/>
+            <point key="canvasLocation" x="3709" y="1140"/>
         </scene>
         <!--New Routine-->
         <scene sceneID="OD3-mE-dV1">
@@ -651,73 +652,43 @@
                                     <segment title="Hard"/>
                                 </segments>
                             </segmentedControl>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edX-ON-jDK">
-                                <rect key="frame" x="30" y="150" width="45" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pushups" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Ga-gj-Qdd">
-                                <rect key="frame" x="30" y="180.5" width="354" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ri6-yo-cqi" customClass="SimpleButton" customModule="MyTrainingBook" customModuleProvider="target">
-                                <rect key="frame" x="30" y="802" width="354" height="30"/>
-                                <state key="normal" title="Save"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="edX-ON-jDK" firstAttribute="top" secondItem="weZ-8N-9ud" secondAttribute="top" constant="10" id="0Ow-el-kIH"/>
                             <constraint firstItem="6Pd-Um-9C9" firstAttribute="leading" secondItem="weZ-8N-9ud" secondAttribute="leading" constant="30" id="46j-Ob-Xb5"/>
                             <constraint firstItem="etL-e1-j1A" firstAttribute="leading" secondItem="weZ-8N-9ud" secondAttribute="leading" constant="30" id="5KZ-Cw-xb0"/>
-                            <constraint firstItem="6Ga-gj-Qdd" firstAttribute="leading" secondItem="weZ-8N-9ud" secondAttribute="leading" constant="30" id="ARK-I5-w2x"/>
                             <constraint firstItem="9Zb-Qk-E6N" firstAttribute="leading" secondItem="weZ-8N-9ud" secondAttribute="leading" constant="30" id="Boq-6c-o2v"/>
                             <constraint firstItem="etL-e1-j1A" firstAttribute="top" secondItem="9lE-aZ-Fgs" secondAttribute="bottom" constant="10" id="Eg3-jB-1pk"/>
-                            <constraint firstItem="weZ-8N-9ud" firstAttribute="trailing" secondItem="6Ga-gj-Qdd" secondAttribute="trailing" constant="30" id="MkW-gS-yGQ"/>
-                            <constraint firstItem="weZ-8N-9ud" firstAttribute="trailing" secondItem="ri6-yo-cqi" secondAttribute="trailing" constant="30" id="OOZ-4f-EMI"/>
                             <constraint firstItem="weZ-8N-9ud" firstAttribute="trailing" secondItem="etL-e1-j1A" secondAttribute="trailing" constant="30" id="QL7-3P-gWf"/>
-                            <constraint firstItem="weZ-8N-9ud" firstAttribute="bottom" secondItem="ri6-yo-cqi" secondAttribute="bottom" constant="30" id="RAC-Tu-kPu"/>
                             <constraint firstItem="9lE-aZ-Fgs" firstAttribute="top" secondItem="9Zb-Qk-E6N" secondAttribute="bottom" constant="30" id="T2h-xI-9Xf"/>
-                            <constraint firstItem="edX-ON-jDK" firstAttribute="leading" secondItem="weZ-8N-9ud" secondAttribute="leading" constant="30" id="Trs-Dh-gDe"/>
                             <constraint firstItem="6Pd-Um-9C9" firstAttribute="top" secondItem="b0d-ch-VYX" secondAttribute="bottom" constant="10" id="WYY-jf-gL7"/>
                             <constraint firstItem="pd1-fF-3sM" firstAttribute="top" secondItem="6Pd-Um-9C9" secondAttribute="bottom" constant="30" id="XnI-oK-pAW"/>
                             <constraint firstItem="weZ-8N-9ud" firstAttribute="trailing" secondItem="9Zb-Qk-E6N" secondAttribute="trailing" constant="30" id="ZMk-69-nTo"/>
-                            <constraint firstItem="ri6-yo-cqi" firstAttribute="leading" secondItem="weZ-8N-9ud" secondAttribute="leading" constant="30" id="ZQz-CQ-v7O"/>
-                            <constraint firstItem="b0d-ch-VYX" firstAttribute="top" secondItem="6Ga-gj-Qdd" secondAttribute="bottom" priority="1" constant="30" id="cdR-Iq-dPt"/>
                             <constraint firstItem="pd1-fF-3sM" firstAttribute="leading" secondItem="weZ-8N-9ud" secondAttribute="leading" constant="30" id="dKN-1C-bBB"/>
                             <constraint firstItem="b0d-ch-VYX" firstAttribute="leading" secondItem="weZ-8N-9ud" secondAttribute="leading" constant="30" id="hfq-wp-Z1h"/>
                             <constraint firstItem="b0d-ch-VYX" firstAttribute="top" secondItem="weZ-8N-9ud" secondAttribute="top" constant="10" id="kbq-0A-Wnh"/>
                             <constraint firstItem="9lE-aZ-Fgs" firstAttribute="leading" secondItem="weZ-8N-9ud" secondAttribute="leading" constant="30" id="r1u-In-GJ1"/>
                             <constraint firstItem="9Zb-Qk-E6N" firstAttribute="top" secondItem="pd1-fF-3sM" secondAttribute="bottom" constant="10" id="t96-xi-N2W"/>
                             <constraint firstItem="weZ-8N-9ud" firstAttribute="trailing" secondItem="6Pd-Um-9C9" secondAttribute="trailing" constant="30" id="uYK-XV-n5g"/>
-                            <constraint firstItem="6Ga-gj-Qdd" firstAttribute="top" secondItem="edX-ON-jDK" secondAttribute="bottom" constant="10" id="wXw-iF-jCV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="weZ-8N-9ud"/>
                     </view>
                     <navigationItem key="navigationItem" title="Exercise Name" id="zTt-mF-IgF">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="MlX-Fn-dxh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MlX-Fn-dxh">
                             <connections>
-                                <action selector="btnEditTapped:" destination="8Va-gJ-2Ep" id="qfy-2I-tIm"/>
+                                <segue destination="9jg-O1-2K5" kind="presentation" identifier="editExercise" id="OLi-n1-uix"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="btnEdit" destination="MlX-Fn-dxh" id="gGR-Ci-EYR"/>
-                        <outlet property="btnSave" destination="ri6-yo-cqi" id="xTP-lR-VBI"/>
-                        <outlet property="lbName" destination="edX-ON-jDK" id="4wK-3B-dpY"/>
                         <outlet property="lbReps" destination="9Zb-Qk-E6N" id="9Ec-kD-zjJ"/>
                         <outlet property="lbType" destination="6Pd-Um-9C9" id="pq6-7Q-Shs"/>
                         <outlet property="sgDifficulty" destination="etL-e1-j1A" id="Am8-ad-e84"/>
-                        <outlet property="tfName" destination="6Ga-gj-Qdd" id="TvN-Ia-x7r"/>
-                        <outlet property="typeToNameConstraint" destination="cdR-Iq-dPt" id="W5F-f1-SYG"/>
-                        <outlet property="typeToSafeAreaConstraint" destination="kbq-0A-Wnh" id="1r5-lC-Sri"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53N-i4-THL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3741" y="1873"/>
+            <point key="canvasLocation" x="2913" y="1858"/>
         </scene>
         <!--New Routine - Exercises-->
         <scene sceneID="NWt-P7-M8Q">
@@ -972,6 +943,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="B6X-ZG-CDV"/>
+        <segue reference="OLi-n1-uix"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.2.circlepath.circle.fill" catalog="system" width="128" height="121"/>

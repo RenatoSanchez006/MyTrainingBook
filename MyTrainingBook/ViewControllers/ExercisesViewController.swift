@@ -10,11 +10,16 @@ import UIKit
 
 class ExercisesViewController: UIViewController,
     UITableViewDelegate, UITableViewDataSource,
-    NewExerciseProtocol, UpdateExerciseProtocol {
+    NewExerciseProtocol {
     
     @IBOutlet weak var tableView: UITableView!
     
     var exerciseList: [Exercise] = []
+    
+    let updateExerciseNotification = Notification.Name(rawValue: "updateExercise")
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +27,23 @@ class ExercisesViewController: UIViewController,
         if FileManager.default.fileExists(atPath: getFileUrl().path) {
             getExercises()
         }
+        
+        // Creating Observer for updated Exercise
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onDidReceiveUpdatedExercise(_:)),
+            name: updateExerciseNotification,
+            object: nil
+        )
+    }
+    
+    @objc func onDidReceiveUpdatedExercise(_ notification: Notification) {
+        let dictionary = notification.object as! NSDictionary
+        let data = dictionary["exercise"] as! Exercise
+        let index = exerciseList.firstIndex(where: { $0._id == data._id })!
+        exerciseList[index] = data
+        tableView.reloadData()
+        saveExercises()
     }
     
     // MARK: - Methods For Table View Controller
@@ -56,24 +78,15 @@ class ExercisesViewController: UIViewController,
         saveExercises()
     }
     
-    func updateExercise(index: Int, exercise: Exercise) {
-        exerciseList[index] = exercise
-        tableView.reloadData()
-        saveExercises()
-    }
-    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newExerciseSegue" {
             let vwNewExercise = segue.destination as! NewExerciseViewController
             vwNewExercise.delegate = self
         } else {
-            let index = tableView.indexPathForSelectedRow!.row
-            let selectedExercise = exerciseList[index]
+            let selectedExercise = exerciseList[tableView.indexPathForSelectedRow!.row]
             let vwDetailExercise = segue.destination as! ExerciseDetailViewController
             vwDetailExercise.exercise = selectedExercise
-            vwDetailExercise.exerciseIndex = index
-            vwDetailExercise.delegate = self
         }
     }
     

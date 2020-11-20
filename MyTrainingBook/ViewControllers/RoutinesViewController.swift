@@ -32,8 +32,7 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
         // Creating Observers
         NotificationCenter.default.addObserver(
             self,
-            selector:
-            #selector(onDidReceiveNewRoutine(_:)),
+            selector: #selector(onDidReceiveNewRoutine(_:)),
             name: newRoutineNotification,
             object: nil
         )
@@ -59,7 +58,7 @@ class RoutinesViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func onDidReceiveUpdatedRoutine(_ notification: Notification) {
         let dictionary = notification.object as! NSDictionary
         let data = dictionary["routine"] as! Routine
-        let index = listRoutines.firstIndex(where: {$0._id == data._id})!
+        let index = listRoutines.firstIndex(where: { $0._id == data._id })!
         listRoutines[index] = data
         tableView.reloadData()
         saveRoutines()

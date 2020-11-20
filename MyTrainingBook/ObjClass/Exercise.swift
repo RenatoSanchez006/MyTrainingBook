@@ -22,6 +22,10 @@ class Exercise: Codable {
         self.defRepetitions = defRepetitions
         self.difficulty = difficulty
     }
+    
+    public func setID(_ id: UUID) {
+        self._id = id
+    }
 }
 
 // MARK: - TODO'S

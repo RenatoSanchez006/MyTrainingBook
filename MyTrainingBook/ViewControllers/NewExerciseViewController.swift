@@ -15,17 +15,25 @@ protocol NewExerciseProtocol {
 class NewExerciseViewController: UIViewController {
     
     // Storyboard Outlets
+    @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfType: UITextField!
     @IBOutlet weak var tfDefReps: UITextField!
     @IBOutlet weak var btnSave: SimpleButton!
     @IBOutlet weak var sgDifficulty: UISegmentedControl!
     
+    // Auxiliar variables
+    var isEditionMode: Bool = false
+    var exerciseAux: Exercise!
+    
     // Protocol Management delegate
     var delegate: NewExerciseProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isEditionMode { setTextFields(exercise: exerciseAux) }
+        
         btnSave.addTarget(self, action: #selector(btnSaveTapped), for: .touchUpInside)
     }
     
@@ -53,10 +61,18 @@ class NewExerciseViewController: UIViewController {
         
         // Create and send newExercise to delegate
         let newExercise = Exercise(name: name, type: exerciseType, defRepetitions: Int(exerciseReps)!, difficulty: exerciseDifficulty)
-        delegate.createExercise(newExercise: newExercise)
+        if isEditionMode {
+            newExercise.setID(exerciseAux._id)
+            let notificationObj = ["exercise" : newExercise]
+            let updateExerciseNotification = Notification.Name(rawValue: "updateExercise")
+            NotificationCenter.default.post(name: updateExerciseNotification, object: notificationObj)
+        } else {
+            delegate.createExercise(newExercise: newExercise)
+        }
         return true
     }
     
+    // MARK: - Utils
     // Alert to ask for at least an exercise name
     func sendAlert() {
         let alert = UIAlertController(title: "Hey!", message: "Your exercise needs at least a name", preferredStyle: .alert)
@@ -72,6 +88,28 @@ class NewExerciseViewController: UIViewController {
             return defaultText
         }
         return textField
+    }
+    
+    func setTextFields(exercise: Exercise) {
+        lbTitle.text = "Edit Exercise"
+        tfName.text = exercise.name
+        tfType.text = exercise.type
+        tfDefReps.text = String(exercise.defRepetitions)
+        let index = getSegmentedControlIndex(difficulty: exercise.difficulty)
+        sgDifficulty.selectedSegmentIndex = index
+    }
+    
+    func getSegmentedControlIndex(difficulty: String) -> Int {
+        switch difficulty {
+        case "Easy":
+            return 0
+        case "Medium":
+            return 1
+        case "Hard":
+            return 2
+        default:
+            return 0
+        }
     }
     
     // MARK: - TODO
